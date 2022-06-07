@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package pb;
+
+message SimpleMessage {
+  string name = 1;
+  int64 quantity = 2;
+  float measure = 3;
+}

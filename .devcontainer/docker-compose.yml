@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  dp:
+    build: 
+      context: .
+      dockerfile: base.Dockerfile
+      args:
+        VARIANT: "3.10-bullseye"
+        USER_UID: 1000 # change to UID
+    volumes:
+      # Mounts the project folder to '/workspace'. While this file is in .devcontainer,
+      # mounts are relative to the first file in the list, which is a level up.
+      - ../:/workspace:cached,z
+    tty: true
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    restart: unless-stopped
